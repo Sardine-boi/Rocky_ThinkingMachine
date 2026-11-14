@@ -2,29 +2,30 @@
 <!-- Brand new attempt people. LETS GO! -->
 
 <html>
-
+<head>
+  <script type="module" src="./script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
   <body style="background-image:url(./Screenshot\ 2026-10-29\ 194026.png);background-size: cover;">
 
     <!-- Title of RTM + Time -->
-    <div style=" font-family:monospace; font-size: 13.2px;position:absolute;width:100%;backdrop-filter:blur(12.35px);display:flex;justify-content:space-between;font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
-      <p  style="color:#90b9fc; margin-left: 30px">
+    <div id="top" style=" font-family:monospace; font-size: 13.2px;position:absolute;width:100%;backdrop-filter:blur(12.35px);display:flex;justify-content:space-between;font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
+      <p  style="color:#90b9fc; margin-left: 30px" style="cursor: pointer" id="welcomeOpen">
         Rocky's Thinking Machine 
       </p>
 
-       <p id="timeElement"style="display:flex;font-family: monospace;color:#90b9fc; padding:5px; margin-right:50px">
-      Time
-    </p>
 
    </div>
-
+   
     <!-- Welcome window -->
-    <div id="welcome" style="background-color:aliceblue; border:solid; width: 300px; height:228px; border-radius:16px; padding:10px;position:absolute;top:50%;left:50%;transform: translate(-50%, -50%); font-family:monospace">
-       
-      <div id="welcomeheader" style="background-color:#90b9fc;color:#6399f6;width:100%; height: 30px;position:relative; align-items: center;cursor: move; justify-content: center;border-radius:8px; display:flex;">
+    <div  class="window" id="welcome" >
+      <div class="windowheader" id="welcomeheader" >
+        
+        <div class="closebutton" id="welcomeClose" onclick="closeWindow('welcome')"></div>
           <p >
           Welcome
           </p>
-          <button type="button" onclick="closeWindow('welcome')" style="background-color:#7e2929; width:16px; height:16px;border-radius:16px; cursor:pointer; padding:5px; margin-right: -200px;"></button>
+          
 
       </div>
 
@@ -41,106 +42,55 @@
 
 
    <div style="font-family:monospace;position:absolute;bottom:5px;width:100%;height:55px;backdrop-filter:transparency(10px);display:flex;justify-content:space-between;font-size:10px;font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
-<!-- Making buttons! they actually look good -->
-      <button type="button" style="border-radius:2px;">
-        Consult Grace
-      </button >
+      
+    <!--  Displaying Time here -->
+    <p id="timeElement"style="display:flex;font-family: monospace;color:#90b9fc; padding:5px; margin-right:50px">
+      Time
+    </p>
+
+
+    <!-- Making the apps for this thing (i know this will be hard) -->
+
+      <div id="DesktopApps" style="border-radius:2px">
         
-      <button type="button" style="border-radius:2px;">
-        Gramophone
-      </button>
+        <!-- Notes App icon (P.S. If at somepoint acc opening code comes into place, remove the onclick in each button input) -->
+        <div  class="selected" style="margin-left:50px;text-align: center; padding:16px;filter:drop-shadow(0 0 8px #232253);width:fit-content;" onclick="openWindow('NotesWindow')">
+          <img src="c:\Users\SDLIY2\Pictures\Camera Roll\WIN_20261106_12_07_13_Pro.jpg" style="width:64px;height:64px;border-radius:16px;position:block">
+        </div>
+        <p style="margin:0px;color:#232253">Notes</p>
+      </div>
 
-      <button type="button" style="border-radius:2px;">
-        Fun Fact!
-      </button>
+    <!-- Notes acc app window -->
 
-      <button type="button" style="border-radius:2px; margin-right:50px">
-        Assess_Ship
-      </button>
+      <div  class="window" id="NotesWindow" style="display: none;">
+       
+      <div  class="windowheader" id="Notesheader" >
+        <div class="closebutton" id="NotesClose" onclick=";closeWindow('NotesWindow')"></div>
+
+          <p >
+          Notes
+          </p>
+          
+
+      </div>
+
+        <div>
+          
+        
+        </div>
+      
     </div>
-    
-    <!--  Making the widows for the apps here -->
-   <div id="">
 
-   </div>
-
-
-
-<!-- ALL javascript for the apps, time  and Rocky Boi go here i suppose? -->
-     <script>
-     /* Shows time! */
-      function updateTime() {
-         var current_time = new Date().toLocaleString();
-        var timeText = document.querySelector("#timeElement");
-        timeText.innerHTML = current_time
-      }
-      setInterval(updateTime,1000);
-
-//  Alrighty, so this is the dragging code (got no idea how it works and im scared to do anythign with this, pray for me)
-      dragElement(document.getElementById("welcome"));
-
-    function dragElement(element) {
-
-      var initialX = 0;
-      var initialY = 0;
-      var currentX = 0;
-      var currentY = 0;
-
- 
-  if (document.getElementById(element.id + "header")) {
+        
   
-    document.getElementById(element.id + "header").onmousedown = startDragging;
-  } else {
-   
-    element.onmousedown = startDragging;
-  }
 
-  
-  function startDragging(e) {
-    e = e || window.event;
-    e.preventDefault();
-    
-    initialX = e.clientX;
-    initialY = e.clientY;
 
-    document.onmouseup = stopDragging;
-    document.onmousemove = dragElement;
-  }
 
-  function dragElement(e) {
-    e = e || window.event;
-    e.preventDefault();
-   
-    currentX = initialX - e.clientX;
-    currentY = initialY - e.clientY;
-    initialX = e.clientX;
-    initialY = e.clientY;
 
-    element.style.top = (element.offsetTop - currentY) + "px";
-    element.style.left = (element.offsetLeft - currentX) + "px";
-  }
 
-  function stopDragging() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-  var welcomeScreen = document.querySelector("#welcome")
 
-  //  So here im trying to get the welcome window to close at a lil button (or just general closing/opening business, that i could use for apps)
+    <script src="script.js"></script>
 
-  function closeWindow(windowId) {
-    var element = document.getElementById(windowId);
-    element.style.display = "none";
-  }
-
-  function openWindow(windowId) {
-    var element = document.getElementById(windowId);
-    element.style.display = "flex";
-}
-  
-    
-    </script>
      
   </body>
 

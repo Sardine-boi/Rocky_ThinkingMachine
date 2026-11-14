@@ -1,0 +1,37 @@
+.closebutton {
+
+     cursor: pointer;
+     background-color:#7e2929;
+      width:16px;
+      height:16px;
+      border-radius:16px;
+       padding:5px;
+        margin-right: -200px;
+
+}
+
+.window {
+    background-color:aliceblue;
+     border:solid;
+      width: 300px;
+       height:228px;
+        border-radius:16px;
+         padding:10px;
+         position:absolute;
+         top:50%;
+         left:50%;
+         transform: translate(-50%, -50%);
+          font-family:monospace"
+
+}
+
+.windowheader {
+    background-color:#90b9fc;
+    color:#6399f6;width:100%;
+     height: 30px;position:relative;
+      align-items: center;
+      cursor: move;
+       justify-content: center;
+       border-radius:8px;
+        display:flex;
+}
