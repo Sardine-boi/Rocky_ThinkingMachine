@@ -31,3 +31,83 @@
 // 18. create showinbetweenanimation function, check for all values of rocky img being true,
 //  once true determine which inbetween animation is nessecary and play it
 // 19. set varibles for Currentrockyimg, true/false
+
+
+
+let clickCount = 0
+let fatiguetimer
+let sitTimer
+let clickintervaltimer
+let rockycurrentstate = "standingidle"
+
+setInterval(assessbackgroundfidget,150)
+
+ function assessbackgroundfidget(){
+
+    if(rockycurrentstate == "sleeping") return;
+    if(rockycurrentstate == "angry") return;
+
+    if (rockycurrentstate == "standingidle"){
+
+    }
+
+    else if (rockycurrentstate == "sittingidle"){
+
+    }
+    }
+
+function callinbetweenanimation(){
+    // put all the switch statements for the animation insbetweens and play them accordingly
+    
+}
+
+function resetfatiguetimer(){
+    clearTimeout(fatiguetimer)
+    setTimeout(rockySleep,6000)
+    fatiguetimer = setTimeout()
+
+
+}
+
+function resetclickintervaltime(){
+    clearTimeout(clickintervaltimer)
+    setTimeout(clickRocky,100)
+    clickintervaltimer = setTimeout()
+}
+
+function clickRocky(){
+    if (rockycurrentstate == "sleeping") return;
+    resetfatiguetimer()
+    clickCount++
+
+    if (rockycurrentstate == "standingidle") {
+     
+        let roll = Math.random();
+    if (roll < 0.2){
+        showRockyDialouge()
+    }
+    else if (roll < 0.5){
+        showRockyOnclickreaction()
+    }
+     }
+
+     if (rockycurrentstate == "sittingidle"){
+         callinbetweenanimation()
+
+     }
+    
+
+    
+}
+
+function callinbetweenanimation(){
+
+}
+
+function showRockyDialouge(){
+
+}
+
+function showRockyOnclickreaction(){
+
+}
