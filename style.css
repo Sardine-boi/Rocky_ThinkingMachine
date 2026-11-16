@@ -41,6 +41,28 @@
     height: 100vh;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+   
+}
 
-    
+/*  animating the stars and the computer floating :33 */
+
+#starlights {
+    animation: pulseStars 4s ease-in-out infinite;
+}
+
+#computer {
+    animation: floatCompy 6s ease-in-out infinite;
+
+}
+
+@keyframes pulseStars{
+    0% {opacity: 0.56}
+    50% {opacity: 1}
+    100% {opacity: 0.56}
+}
+
+@keyframes floatCompy{
+    0% { transform: translateY(0px)}
+    50%{transform: translateY(-15px)}
+    100%{transform: translateY(0px)}
 }
