@@ -6,11 +6,14 @@
   <script type="module" src="./script.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-  <body style="background-image:url(./Screenshot\ 2026-10-29\ 194026.png);background-size: cover;">
+  <body style="background-image:url('RTM background.png');background-size: 100% 100%;height:100vh; background-repeat: no-repeat; margin: 0; overflow:hidden;">
+
+    <img src="starlights for RTM.png" id="starlights" class="bg_layer" alt=""/>
+    <img src="computer.png" id="computer" class="bg_layer" alt="" />
 
     <!-- Title of RTM + Time -->
-    <div id="top" style=" font-family:monospace; font-size: 13.2px;position:absolute;width:100%;backdrop-filter:blur(12.35px);display:flex;justify-content:space-between;font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
-      <p  style="color:#90b9fc; margin-left: 30px" style="cursor: pointer" id="welcomeOpen">
+    <div id="top" style="font-family:monospace; font-size: 13.2px;position:absolute;width:100%;backdrop-filter:blur(12.35px);display:flex;justify-content:space-between;font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
+      <p  style="color:#90b9fc; margin-left: 30px; cursor: pointer" id="welcomeOpen">
         Rocky's Thinking Machine 
       </p>
 
@@ -56,8 +59,9 @@
         <!-- Notes App icon (P.S. If at somepoint acc opening code comes into place, remove the onclick in each button input) -->
         <div  class="selected" style="margin-left:50px;text-align: center; padding:16px;filter:drop-shadow(0 0 8px #232253);width:fit-content;" onclick="openWindow('NotesWindow')">
           <img src="c:\Users\SDLIY2\Pictures\Camera Roll\WIN_20261106_12_07_13_Pro.jpg" style="width:64px;height:64px;border-radius:16px;position:block">
+          <p style="margin:0px;color:#232253">Notes</p>
         </div>
-        <p style="margin:0px;color:#232253">Notes</p>
+        
       </div>
 
     <!-- Notes acc app window -->
@@ -65,11 +69,14 @@
       <div  class="window" id="NotesWindow" style="display: none;">
        
       <div  class="windowheader" id="Notesheader" >
-        <div class="closebutton" id="NotesClose" onclick=";closeWindow('NotesWindow')"></div>
-
-          <p >
+        <p >
           Notes
           </p>
+        <div class="closebutton" id="NotesClose" onclick=";closeWindow('NotesWindow')">
+
+        </div>
+
+          
           
 
       </div>

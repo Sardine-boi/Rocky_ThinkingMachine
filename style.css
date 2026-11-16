@@ -35,3 +35,12 @@
        border-radius:8px;
         display:flex;
 }
+
+.bg_layer {
+    position: fixed;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    
+}

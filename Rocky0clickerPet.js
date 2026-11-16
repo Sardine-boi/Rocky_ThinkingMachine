@@ -40,7 +40,7 @@ let sitTimer
 let clickintervaltimer
 let rockycurrentstate = "standingidle"
 
-setInterval(assessbackgroundfidget,150)
+setInterval(assessbackgroundfidget,15000)
 
  function assessbackgroundfidget(){
 
@@ -48,11 +48,13 @@ setInterval(assessbackgroundfidget,150)
     if(rockycurrentstate == "angry") return;
 
     if (rockycurrentstate == "standingidle"){
-
+        //  so here will be the randomised selection of the fidget (here by allocating a name for rockycurrentstate,
+        //  and then calling the inbetweenanimation which will subsequently swap an inbetween animation to the final one)
     }
 
     else if (rockycurrentstate == "sittingidle"){
-
+        //  so here will be the randomised selection of the fidget (here by allocating a name for rockycurrentstate,
+        //  and then calling the inbetweenanimation which will subsequently swap an inbetween animation to the final one)
     }
     }
 
@@ -100,9 +102,7 @@ function clickRocky(){
     
 }
 
-function callinbetweenanimation(){
 
-}
 
 function showRockyDialouge(){
 
