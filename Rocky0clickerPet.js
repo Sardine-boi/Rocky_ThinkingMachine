@@ -34,11 +34,23 @@
 
 
 
-let clickCount = 0
+let clickCount = 0;
 let fatiguetimer
 let sitTimer
-let clickintervaltimer
-let rockycurrentstate = "standingidle"
+let rockycurrentstate = "standingidle";
+let targetstate 
+let lastrockyclicktime = 0;
+let spamclicks = 0;
+
+
+const happyQuotes = [
+  "♪ Amaze! Amaze! Amaze! ♪",
+  "♫ Happy! Friend Grace! ♫",
+  "♪ *tap tap tap* ♪",
+  "I hate my new plane of existence",
+  " can you lock the ♫♪♪ in?  "
+];
+
 
 setInterval(assessbackgroundfidget,15000)
 
@@ -58,7 +70,7 @@ setInterval(assessbackgroundfidget,15000)
     }
     }
 
-function callinbetweenanimation(){
+function callinbetweenanimation( targetstate){
     // put all the switch statements for the animation insbetweens and play them accordingly
     
 }
@@ -71,14 +83,12 @@ function resetfatiguetimer(){
 
 }
 
-function resetclickintervaltime(){
-    clearTimeout(clickintervaltimer)
-    setTimeout(clickRocky,100)
-    clickintervaltimer = setTimeout()
-}
 
 function clickRocky(){
+   
     if (rockycurrentstate == "sleeping") return;
+    checkspamclicks()
+    if (rockycurrentstate == "angry") return;
     resetfatiguetimer()
     clickCount++
 
@@ -94,20 +104,62 @@ function clickRocky(){
      }
 
      if (rockycurrentstate == "sittingidle"){
-         callinbetweenanimation()
+         callinbetweenanimation("standingidle")
 
      }
     
+     const now = Date.now();
+     if (now-lastrockyclicktime < 800){
+        spamclicks++
+     }
+     else { spamclicks = 0;
+         lastrockyclicktime = now;}
+    
 
     
 }
 
-
-
+function checkspamclicks() {
+    if (spamclicks >= 10){
+        triggerrockyangry()
+    }
+}
+// from here to the end of this, chaneg this ;later absolutey
 function showRockyDialouge(){
+    alert("clicked!")
+    const box = document.getElementById("rocky-speech");
+
+  // 3. Pick a random number (0, 1, or 2)
+  const randomNumber = Math.floor(Math.random() * happyQuotes.length);
+
+  // 4. Put that random quote inside the box
+  box.innerText = happyQuotes[randomNumber];
+
+  // 5. Make the box visible by removing "hidden"
+  box.classList.remove("hidden");
+
+  // 6. Wait 3 seconds (3000ms), then hide it again
+  setTimeout(function() {
+    box.classList.add("hidden");
+  }, 3000);
 
 }
 
+
+// end
+
+
 function showRockyOnclickreaction(){
+ let roll = Math.random()
+
+ if (roll == 0.5){
+
+ }
+}
+
+
+
+function triggerrockyangry(){
+
 
 }

@@ -48,10 +48,12 @@
 
 #starlights {
     animation: pulseStars 4s ease-in-out infinite;
+     will-change: opacity;
 }
 
 #computer {
     animation: floatCompy 6s ease-in-out infinite;
+     will-change: transform;
 
 }
 
@@ -65,4 +67,39 @@
     0% { transform: translateY(0px)}
     50%{transform: translateY(-15px)}
     100%{transform: translateY(0px)}
+}
+
+#rocky-pet{
+     position: fixed;
+  top: 40%;
+  left: 42%;
+  width: 220px;
+  height: 180px;
+  background-color: rgba(255, 165, 0, 0.5); /* See-through orange box */
+  border: 2px dashed white;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+/* chnage later */
+
+#rocky-speech {
+  position: fixed;
+  bottom: 60%;           /* Sits safely above Rocky's head */
+  left: 45%;             /* Moves it left/right over his quilt */
+  background: #231f20;   /* Dark background */
+  color: #ffe885;        /* Yellow text */
+  padding: 10px 15px;    /* Space inside the box */
+  border-radius: 8px;    /* Rounded corners */
+  font-family: monospace;
+  z-index: 1;           /* Sits on top of everything */
+}
+
+.hidden {
+  display: none;         /* Anything with this class is invisible */
 }
