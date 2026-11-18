@@ -85,21 +85,32 @@
   z-index: 10;
 }
 
+#rocky-speech::before {
+    content: "Rocky :3";
+    display: block;
+    font-size: 0.75rem ;
+    font-family: monospace;
+    color: #ffe885;
+    margin-bottom:4px ;
+    letter-spacing: 1px ;
 
-/* chnage later */
+}
 
 #rocky-speech {
   position: fixed;
-  bottom: 60%;           /* Sits safely above Rocky's head */
-  left: 45%;             /* Moves it left/right over his quilt */
-  background: #231f20;   /* Dark background */
-  color: #ffe885;        /* Yellow text */
-  padding: 10px 15px;    /* Space inside the box */
-  border-radius: 8px;    /* Rounded corners */
+  bottom: 75px;          
+  left: 45%;             
+  background: #231f20;   
+  color: #ffe885;       
+  padding: 10px 15px;   
+  border-radius: 8px;   
   font-family: monospace;
-  z-index: 1;           /* Sits on top of everything */
+  z-index: 1;    
+  transform:translateX(-50%);
+  max-width: 600px;
+  text-align: center;
 }
 
 .hidden {
-  display: none;         /* Anything with this class is invisible */
+  display: none;        
 }

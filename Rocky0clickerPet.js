@@ -48,7 +48,12 @@ const happyQuotes = [
   "♫ Happy! Friend Grace! ♫",
   "♪ *tap tap tap* ♪",
   "I hate my new plane of existence",
-  " can you lock the ♫♪♪ in?  "
+  " can you lock the ♫♪♪ in?  ",
+  "Does Thinking Machine satisfy human friend curiousity, question?",
+  "Rocky like turtles",
+  "Yes, Yes, good",
+  "Rocky efforts satisfactory, question?"
+
 ];
 
 
@@ -124,9 +129,9 @@ function checkspamclicks() {
         triggerrockyangry()
     }
 }
-// from here to the end of this, chaneg this ;later absolutey
+
 function showRockyDialouge(){
-    alert("clicked!")
+    
     const box = document.getElementById("rocky-speech");
 
   // 3. Pick a random number (0, 1, or 2)
@@ -146,7 +151,7 @@ function showRockyDialouge(){
 }
 
 
-// end
+
 
 
 function showRockyOnclickreaction(){
