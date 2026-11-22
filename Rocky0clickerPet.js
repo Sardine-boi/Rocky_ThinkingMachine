@@ -36,9 +36,7 @@
 
 let clickCount = 0;
 let fatiguetimer
-let sitTimer
-let rockycurrentstate = "standingidle";
-let targetstate 
+let rockycurrentstate = "sitidle";
 let lastrockyclicktime = 0;
 let spamclicks = 0;
 
@@ -52,10 +50,18 @@ const happyQuotes = [
   "Does Thinking Machine satisfy human friend curiousity, question?",
   "Rocky like turtles",
   "Yes, Yes, good",
-  "Rocky efforts satisfactory, question?"
+  "Rocky efforts satisfactory, question?",
+  "i am in your walls"
 
 ];
 
+
+const Rockyreactions = [
+    {text:"♪ Amaze! Amaze! Amaze! ♪", sound:"OS_sounds/rocky-amaze-amaze-amaze.mp3",gif:"Rocky-jazzhands.gif"},
+    {text:"Hello Grace friend ♪", sound:"OS_sounds/hello-grace-friend.mp3",gif:"sitidle.gif"},
+    {text:"Thumbs up baby!", sound:"OS_sounds/rocky-thumbs-up-baby.mp3",gif:"Rocky-thumbsup.gif"},
+    {text:"♫♪♪...♪♫♫♪..♪♪ ", sound:"OS_sounds/rocky-phm-song.mp3",gif:"Rocky-thrill.gif"},
+]
 
 setInterval(assessbackgroundfidget,15000)
 
@@ -64,20 +70,11 @@ setInterval(assessbackgroundfidget,15000)
     if(rockycurrentstate == "sleeping") return;
     if(rockycurrentstate == "angry") return;
 
-    if (rockycurrentstate == "standingidle"){
-        //  so here will be the randomised selection of the fidget (here by allocating a name for rockycurrentstate,
-        //  and then calling the inbetweenanimation which will subsequently swap an inbetween animation to the final one)
-    }
+    let roll = Math.floor(Math.random() *100)
 
-    else if (rockycurrentstate == "sittingidle"){
-        //  so here will be the randomised selection of the fidget (here by allocating a name for rockycurrentstate,
-        //  and then calling the inbetweenanimation which will subsequently swap an inbetween animation to the final one)
-    }
-    }
+   
 
-function callinbetweenanimation( targetstate){
-    // put all the switch statements for the animation insbetweens and play them accordingly
-    
+
 }
 
 function resetfatiguetimer(){
@@ -97,53 +94,54 @@ function clickRocky(){
     resetfatiguetimer()
     clickCount++
 
-    if (rockycurrentstate == "standingidle") {
+    if (rockycurrentstate == "sitidle") {
+        let roll = Math.random() 
+
+        if (roll < 0.5){
+            showRockyreactions()
+        }
+    else{
+        //  rocky squish
+    }
+     }
      
-        let roll = Math.random();
-    if (roll < 0.2){
-        showRockyDialouge()
-    }
-    else if (roll < 0.5){
-        showRockyOnclickreaction()
-    }
-     }
-
-     if (rockycurrentstate == "sittingidle"){
-         callinbetweenanimation("standingidle")
-
-     }
     
-     const now = Date.now();
+   
+}
+
+function checkspamclicks() {
+       const now = Date.now();
      if (now-lastrockyclicktime < 800){
         spamclicks++
      }
      else { spamclicks = 0;
-         lastrockyclicktime = now;}
-    
+        }
+         lastrockyclicktime = now;
 
-    
-}
-
-function checkspamclicks() {
     if (spamclicks >= 10){
         triggerrockyangry()
     }
 }
 
-function showRockyDialouge(){
+
+function chooseHappyquotes(){
+
     
-    const box = document.getElementById("rocky-speech");
-
-  // 3. Pick a random number (0, 1, or 2)
   const randomNumber = Math.floor(Math.random() * happyQuotes.length);
+   showRockyDialouge(happyQuotes[randomNumber])
 
-  // 4. Put that random quote inside the box
-  box.innerText = happyQuotes[randomNumber];
 
-  // 5. Make the box visible by removing "hidden"
+}
+
+function showRockyDialouge(text){
+    
+    const box = document.getElementById("rocky-textbox");
+    const textspot = document.getElementById("rocky-text")
+    textspot.innerText = text;
+
+  
   box.classList.remove("hidden");
 
-  // 6. Wait 3 seconds (3000ms), then hide it again
   setTimeout(function() {
     box.classList.add("hidden");
   }, 3000);
@@ -154,17 +152,35 @@ function showRockyDialouge(){
 
 
 
-function showRockyOnclickreaction(){
- let roll = Math.random()
+function showRockyreactions(){
+    const index = Math.floor(Math.random()* Rockyreactions.length);
+    const chosen = Rockyreactions[index]
 
- if (roll == 0.5){
-
- }
+    PlayRockysounds(chosen.sound)
+    setRockyimage(chosen.gif)
+    showRockyDialouge(chosen.text)
+ 
 }
 
 
 
 function triggerrockyangry(){
+//  soon more stuff here, like the angry screeching and extra dialouge
+showRockyDialouge("Stop Poking Rocky or will throw out of airlock")
 
+}
+
+function rockySleep(){
+
+
+}
+
+function PlayRockysounds(file) {
+    const audio = new Audio(file)
+    audio.volume = 0.6
+    audio.play();
+}
+
+function setRockyimage(){
 
 }

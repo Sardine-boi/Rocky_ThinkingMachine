@@ -3,8 +3,8 @@
 
 <html>
 <head>
-  <script src="./script.js"></script>
-  <script src="./Rocky0clickerPet.js"></script>
+  <script src="./script.js"defer></script>
+  <script src="./Rocky0clickerPet.js"defer></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
   <body style="background-image:url('RTM background.png');background-size: 100% 100%;height:100vh; background-repeat: no-repeat; margin: 0; overflow:hidden;">
@@ -24,17 +24,25 @@
    </div>
 
     <!-- Making Rocky clicker pet over here :3 -->
-      <div id="rocky-pet" onclick="showRockyDialouge()"> Rocky replacement</div>
+      <div id="rocky-pet" onclick=" showRockyreactions()"></div>
+
 
       <!-- texxtbox for rocky -->
 
-    <div id="rocky-speech"  class="hidden"> </div>
+    <div id="rocky-textbox"  class="hidden">
+
+      <div id="rocky-texboxtag"> ROCKY </div>
+
+      <div id="rocky-text"></div>
+    
+
+    </div>
       
     <!-- Welcome window -->
     <div  class="window" id="welcome" >
       <div class="windowheader" id="welcomeheader" >
         
-        <div class="closebutton" id="welcomeClose" onclick="closeWindow('welcome')"></div>
+        <div class="closebutton" id="welcomeClose"></div>
           <p >
           Welcome
           </p>
@@ -67,7 +75,7 @@
       <div id="DesktopApps" style="border-radius:2px">
         
         <!-- Notes App icon (P.S. If at somepoint acc opening code comes into place, remove the onclick in each button input) -->
-        <div  class="selected" style="margin-right:80px;text-align: center; padding:16px;filter:drop-shadow(0 0 8px #232253);width:fit-content;" onclick="openWindow('NotesWindow')">
+        <div  id="NotesOpen" class="selected" style="margin-right:80px;text-align: center; padding:16px;filter:drop-shadow(0 0 8px #232253);width:fit-content;">
           <img src="c:\Users\SDLIY2\Pictures\Camera Roll\WIN_20261106_12_07_13_Pro.jpg" style="width:64px;height:64px;border-radius:16px;position:block">
           <p style="margin:0px;color:#232253">Notes</p>
         </div>
@@ -104,9 +112,7 @@
 
 
 
-    <script src="Rocky0clickerPet.js" defer></script>
-
-    <script src="script.js"></script>
+    
    
      
   </body>

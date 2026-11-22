@@ -12,10 +12,8 @@
 
 
 // Here where we put the initialization code for all windows, cuase im a bum at this
-    
-initializeWindow("welcome")
-initializeWindow("NotesWindow")
-
+    var BiggestIndex = 1
+    var topBar = document.querySelector("#top")
 
 
 // Acc drag code down here
@@ -44,10 +42,10 @@ initializeWindow("NotesWindow")
     initialY = e.clientY;
 
     document.onmouseup = stopDragging;
-    document.onmousemove = dragElement;
+    document.onmousemove = elementdrag;
   }
 
-  function dragElement(e) {
+  function elementdrag(e) {
     e = e || window.event;
     e.preventDefault();
    
@@ -68,7 +66,7 @@ initializeWindow("NotesWindow")
   
   
   //  So here im trying to get the welcome window to close at a lil button (or just general closing/opening business, that i could use for apps)
-  var topBar = document.querySelector("#top")
+  
 // CLOSING WELCOME SCREEN
   var welcomeScreen = document.querySelector("#welcome")
   var welcomeScreenClose = document.querySelector("#welcomeClose")
@@ -84,13 +82,11 @@ welcomeScreenOpen.addEventListener("click", function() {
 });
 
   
-  function closeWindow(windowId) {
-    var element = document.getElementById(windowId);
+  function closeWindow(element) {
     element.style.display = "none";
   }
 
-  function openWindow(windowId) {
-    var element = document.getElementById(windowId);
+  function openWindow(element) {
     element.style.display = "flex";
     BiggestIndex++;
     element.style.zIndex = BiggestIndex;
@@ -98,18 +94,14 @@ welcomeScreenOpen.addEventListener("click", function() {
 }
 
 //  MAKING THE WELCOME SCREEN CLOSE WHEN THE NOTES SCREEN COMES UP
-var welcomeScreen = document.querySelector("#welcome")
-var notesScreenClose = document.querySelector("#welcomeclose")
+var notesWindow = document.querySelector("#NotesWindow");
+var notesWindowOpen = document.querySelector("#NotesOpen");
+var noteswindowClose = document.querySelector("#NotesClose");
 
-notesScreenClose.addEventListener("click", () => closeWindow(welcomeScreen));
-  
-// MAKING THE NOTES WINDOW CLOSE
+notesWindowOpen.addEventListener("click", () => openWindow(notesWindow));
+noteswindowClose.addEventListener("click", () => closeWindow(notesWindow));
 
-var notesWindow = document.querySelector( "#NotesWindow")
-var  notesWindowOpen = document.querySelector("#NotesOpen")
-var noteswindowClose = document.querySelector("#NotesClose")
 
-notesScreenClose.addEventListener("click", () => closeWindow(notesWindow));
 
 //  selecting icons and things?
 var SelectedIcon = undefined
@@ -121,6 +113,7 @@ var SelectedIcon = undefined
    }
 
    function stopSelectingIcon(element) {
+      if (!element) return;
     element.classList.remove("selected")
     SelectedIcon = undefined
    }
@@ -148,7 +141,7 @@ var SelectedIcon = undefined
     BiggestIndex++;
     element.style.zIndex = BiggestIndex
     topBar.style.zIndex = BiggestIndex + 1;
-     stopSelectingIcon(selectedIcon)
+     stopSelectingIcon(SelectedIcon)
    }
 
 
@@ -160,3 +153,7 @@ var SelectedIcon = undefined
   dragElement(screen)
 
 }
+
+initializeWindow("welcome")
+initializeWindow("NotesWindow")
+
