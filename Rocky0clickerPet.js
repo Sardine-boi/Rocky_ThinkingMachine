@@ -142,10 +142,7 @@ function showRockyDialouge(text){
   
   box.classList.remove("hidden");
 
-  setTimeout(function() {
-    box.classList.add("hidden");
-  }, 3000);
-
+  
 }
 
 
@@ -179,8 +176,25 @@ function PlayRockysounds(file) {
     const audio = new Audio(file)
     audio.volume = 0.6
     audio.play();
+    audio.onended = function() {
+        setTimeout(function(){
+           document.getElementById("rocky-textbox").classList.add("hidden");
+        },500);
+    }
 }
 
-function setRockyimage(){
+function setRockyimage(filename){
+ const rocky = document.getElementById("rocky-pet")
+ rocky.style.backgroundImage = "url('" + filename + "')";
+}
 
+
+function changerockystate(newstate) {
+    rockycurrentstate = newstate
+    if (newstate == "sitidle"){
+
+    }
+    else if (newstate == "sitidle"){
+
+    }
 }

@@ -72,20 +72,30 @@
 
 #rocky-pet{
     position: fixed;
-    top: 18%;
-    left: 57%;
-    width: 60%;
-    height: 72%;
-    background-image:url(Rocky_clickerPetstatic.png);
-    border: 2px solid red;
+    top: 15%;
+    left: 55%;
+    width: 72%;
+    height: 80%;
+    background-image:url(RockyIdleanimation.webp);
     background-size:contain;
     background-repeat:no-repeat;
     background-position: center-bottom;
-    cursor: pointer;
+    pointer-events: none;
     z-index: 10;
     transform-origin: bottom-center;
     
 }
+
+#rocky-pet-hitbox{
+    top: 50%;
+    left: 65%;
+    cursor:pointer;
+    position: fixed;
+    border: 2px solid red;
+    width: 17%;
+    height: 27%;
+}
+
 
 
 .hidden {
@@ -115,10 +125,10 @@
 
 #rocky-textboxtag {
 
+    color:#e0cb47;
     position:absolute;
     bottom: 30% ;
     left: 45%;
-    color:#e0cb47;
     text-align: block
 
 
