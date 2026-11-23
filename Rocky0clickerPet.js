@@ -32,13 +32,15 @@
 //  once true determine which inbetween animation is nessecary and play it
 // 19. set varibles for Currentrockyimg, true/false
 
-
+ 
 
 let clickCount = 0;
 let fatiguetimer
 let rockycurrentstate = "sitidle";
 let lastrockyclicktime = 0;
 let spamclicks = 0;
+let typewriterTimer = null
+let isreactionrunning= false
 
 
 const happyQuotes = [
@@ -57,13 +59,17 @@ const happyQuotes = [
 
 
 const Rockyreactions = [
-    {text:"♪ Amaze! Amaze! Amaze! ♪", sound:"OS_sounds/rocky-amaze-amaze-amaze.mp3",gif:"Rocky-jazzhands.gif"},
-    {text:"Hello Grace friend ♪", sound:"OS_sounds/hello-grace-friend.mp3",gif:"sitidle.gif"},
-    {text:"Thumbs up baby!", sound:"OS_sounds/rocky-thumbs-up-baby.mp3",gif:"Rocky-thumbsup.gif"},
-    {text:"♫♪♪...♪♫♫♪..♪♪ ", sound:"OS_sounds/rocky-phm-song.mp3",gif:"Rocky-thrill.gif"},
+    {text:"♪ Amaze! Amaze! Amaze! ♪", sound:"OS_sounds/rocky-amaze-amaze-amaze.mp3",gif:"RockyIdleanimation.webp"},
+    {text:"Hello Grace friend ♪", sound:"OS_sounds/hello-grace-friend.mp3",gif:"RockyIdleanimation.webp"},
+    {text:"Thumbs up baby!", sound:"OS_sounds/rocky-thumbs-up-baby.mp3",gif:"RockyIdleanimation.webp"},
+    {text:"♫♪♪...♪♫♫♪..♪♪ ", sound:"OS_sounds/rocky-phm-song.mp3",gif:"RockyIdleanimation.webp"},
+    {text:"🎵🎶🎵~!", sound:"OS_sounds/rocky-phm-singing.mp3",gif:"RockyIdleanimation.webp"}
 ]
 
 setInterval(assessbackgroundfidget,15000)
+
+
+// Add safegaurds to the reactions and animations and shyt
 
  function assessbackgroundfidget(){
 
@@ -72,14 +78,19 @@ setInterval(assessbackgroundfidget,15000)
 
     let roll = Math.floor(Math.random() *100)
 
+    if(roll >= 20){
+
+    }
+
    
 
 
 }
 
+
 function resetfatiguetimer(){
     clearTimeout(fatiguetimer)
-    setTimeout(rockySleep,6000)
+    setTimeout(rockySleep,60 *1000)
     fatiguetimer = setTimeout()
 
 
@@ -139,9 +150,16 @@ function showRockyDialouge(text){
     const textspot = document.getElementById("rocky-text")
     textspot.innerText = text;
 
-  
+  clearInterval(typewriterTimer)
+  textspot.innerText = "";
   box.classList.remove("hidden");
 
+  let i =0;
+  typewriterTimer =setInterval(function(){
+    textspot.textContent += text.charAt(i);
+    i++;
+    if (i >=text.length) clearInterval(typewriterTimer);
+  },35)
   
 }
 
@@ -150,6 +168,8 @@ function showRockyDialouge(text){
 
 
 function showRockyreactions(){
+//  make it so that when the reaction is ongoing, no clicking will make the reaction restart
+    if (isreactionrunning) return;
     const index = Math.floor(Math.random()* Rockyreactions.length);
     const chosen = Rockyreactions[index]
 
@@ -164,11 +184,24 @@ function showRockyreactions(){
 function triggerrockyangry(){
 //  soon more stuff here, like the angry screeching and extra dialouge
 showRockyDialouge("Stop Poking Rocky or will throw out of airlock")
+changerockystate('angry')
 
 }
 
 function rockySleep(){
+    showRockyDialouge(" * yawn* ")
+    PlayRockysounds('OS_sounds/rocky-purr.mp3');
 
+
+    setTimeout( function(){
+        changerockystate('sleeping')
+    }, 4500);
+
+    setTimeout( function(){
+        document.getElementById("rocky-textbox").classList.add("hidden");
+        resetfatiguetimer();
+    },5500);
+ 
 
 }
 
@@ -192,9 +225,45 @@ function setRockyimage(filename){
 function changerockystate(newstate) {
     rockycurrentstate = newstate
     if (newstate == "sitidle"){
+        setRockyimage("RockyIdleanimation.webp")
+    }
+    else if (newstate == "angry"){
+        setRockyimage("rockyangryanimation")
 
     }
-    else if (newstate == "sitidle"){
-
+    else if (newstate == "sleeping"){
+        setRockyimage("RockySleepinganimation.webp")
     }
 }
+
+function startgreetingsequence(){
+    changerockystate("greeting")
+
+    showRockyDialouge("Hello human friend")
+    setTimeout(function (){
+        showRockyDialouge("This is Rocky's Thinking machine! Is thinking machine gifted to Rocky by Grace friend")
+    }, 4000)
+
+    setTimeout(function(){
+            showRockyDialouge("Now Rocky show thinking machine to new human friend!")
+        },8000)
+    
+    setTimeout(function(){
+        showRockyDialouge("Is good, good. Rocky can assure, statement!")
+    },12000)
+
+    setTimeout(function(){
+        showRockyDialouge("can play with Rocky and do many things on thinking machine")
+    },18000)
+
+    setTimeout(function(){
+        showRockyDialouge("Time go searching!")
+    },20000)
+
+    setTimeout( function(){
+        document.getElementById("rocky-textbox").classList.add("hidden");
+        resetfatiguetimer();
+    },24000)
+}
+
+startgreetingsequence()

@@ -1,3 +1,12 @@
+
+@font-face{
+    font-family:'HailMarySans';
+    src: url('Hail_Mary_Sans_v2.otf') format('opentype')
+}
+
+
+
+
 .closebutton {
 
      cursor: pointer;
@@ -102,15 +111,16 @@
   display: none;        
 }
 
+/*  Get the style for the texbox to go more to the left, smaller, and the respective font/ getting the name plate to show */
 
 #rocky-textbox {
   position: fixed;
   bottom: 75px;          
-  left: 50%;             
+  left: 34%;             
   transform: translateX(-50%);
-  width: 65%;
-  max-width: 780px;
-  min-height:95px ;
+  width: 46%;
+  max-width: 580px;
+  min-height:75px ;
   background: rgba(18,26,17,0.92);
   backdrop-filter: blur(8px) ;
   border: 2px solid #e0cb47; 
@@ -127,9 +137,17 @@
 
     color:#e0cb47;
     position:absolute;
-    bottom: 30% ;
-    left: 45%;
-    text-align: block
+    top: -16px ;
+    left: 18px;
+    background-color:#2b5876;
+    border:2px solid #ffe885 ;
+    border-radius: 6px ;
+    padding: 3px 14px;
+    font-family: 'HailMarySans','Space Mono', monospace;
+    font-weight: bold;
+    font-size:0.9em ;
+    letter-spacing: 2px ;
+
 
 
 }
@@ -137,6 +155,8 @@
 #rocky-text{
     margin: 0;
     color: #e0cb47 ;
+    font-family: 'Space Mono', monospace;
     line-height: 1.45;
+    font-size: 1.1rem;
 
 }
