@@ -141,7 +141,7 @@ function clickRocky(){
     if (rockycurrentstate == "sitidle") {
         let roll = Math.random() 
 
-        if (roll < 0.6){
+        if (roll > 0.75){
             showRockyreactions();
             resetfatiguetimer();
         }
@@ -238,21 +238,21 @@ showRockyDialouge(" WHY SO AGGRESSIVE QUESTION ?! ")
 const seethinggrowl = new Audio('OS_sounds/eram-laughter-deltarune.mp3')
 seethinggrowl.volume = 0.6;
 seethinggrowl.play()
-const badbad = new Audio('OS_sounds/rocky-bad-bad-bad.mp3');
-    badbad.volume = 0.6;
+const angerscreech= new Audio('OS_sounds/092-gastly.mp3');
+    angerscreech.volume = 0.6;
     
 
 setTimeout(function(){
     setRockyimage('raisinghandinanger.webp')
     showRockyDialouge('Stop endless poking or will throw out of airlock!')
-    badbad.play()
+    angerscreech.play()
 
 }, 4500)
 
 setTimeout(function(){
     setRockyimage('raisinghandinanger.webp')
     showRockyDialouge('why so clingy? human silly and stupid, statement.')
-   
+   angerscreech.play()
 
 }, 8500)
 
