@@ -75,6 +75,7 @@ setInterval(assessbackgroundfidget,15000)
 
     if(rockycurrentstate == "sleeping") return;
     if(rockycurrentstate == "angry") return;
+    if(rockycurrentstate == "greeting") return;
 
     let roll = Math.floor(Math.random() *100)
 
@@ -89,21 +90,35 @@ setInterval(assessbackgroundfidget,15000)
 
 
 function resetfatiguetimer(){
-    clearTimeout(fatiguetimer)
-    setTimeout(rockySleep,60 *1000)
-    fatiguetimer = setTimeout()
+    clearTimeout(fatiguetimer);
+    setTimeout(rockySleep,60 *1000);
+
 
 
 }
 
 
 function clickRocky(){
-   
-    if (rockycurrentstate == "sleeping") return;
-    checkspamclicks()
-    if (rockycurrentstate == "angry") return;
+
+  if (rockycurrentstate === "greeting") return;
+  if (rockycurrentstate === "angry") return;
+  if (rockycurrentstate === "reacting") return;
+  if (rockycurrentstate === "wakingup") return;
+ if (rockycurrentstate === "fallingasleep") return;
+
+
+    if (rockycurrentstate === "sleeping"){
+        triggerRockywakeup();
+        return;
+    } 
+
+     checkspamclicks()
+
+    
+
     resetfatiguetimer()
     clickCount++
+    // rocky squish
 
     if (rockycurrentstate == "sitidle") {
         let roll = Math.random() 
@@ -111,9 +126,7 @@ function clickRocky(){
         if (roll < 0.5){
             showRockyreactions()
         }
-    else{
-        //  rocky squish
-    }
+    
      }
      
     
@@ -169,6 +182,15 @@ function showRockyDialouge(text){
 
 function showRockyreactions(){
 //  make it so that when the reaction is ongoing, no clicking will make the reaction restart
+//  also get it to work after the greeting, dont just not work silly thing
+
+    if (rockycurrentstate !== "sitidle") return;
+
+  
+    changerockystate('reacting');
+
+  
+    
     if (isreactionrunning) return;
     const index = Math.floor(Math.random()* Rockyreactions.length);
     const chosen = Rockyreactions[index]
@@ -176,6 +198,8 @@ function showRockyreactions(){
     PlayRockysounds(chosen.sound)
     setRockyimage(chosen.gif)
     showRockyDialouge(chosen.text)
+
+    resetfatiguetimer()
  
 }
 
@@ -185,33 +209,46 @@ function triggerrockyangry(){
 //  soon more stuff here, like the angry screeching and extra dialouge
 showRockyDialouge("Stop Poking Rocky or will throw out of airlock")
 changerockystate('angry')
+resetfatiguetimer();
 
 }
 
 function rockySleep(){
+
+    if (rockycurrentstate !=="sitidle") return;
+
+    rockycurrentstate = "fallingasleep";
+
     showRockyDialouge(" * yawn* ")
-    PlayRockysounds('OS_sounds/rocky-purr.mp3');
+    const purr = new Audio('OS_sounds/rocky-purr.mp3');
+    purr.volume = 0.6;
+    purr.play()
+    
 
-
-    setTimeout( function(){
-        changerockystate('sleeping')
-    }, 4500);
 
     setTimeout( function(){
         document.getElementById("rocky-textbox").classList.add("hidden");
-        resetfatiguetimer();
-    },5500);
+        changerockystate('fallingasleep');
+    },3000);
+
+    setTimeout(function(){
+        changerockystate('sleeping')
+    },5500)
  
 
 }
 
 function PlayRockysounds(file) {
+    changerockystate('reacting')
     const audio = new Audio(file)
     audio.volume = 0.6
     audio.play();
     audio.onended = function() {
         setTimeout(function(){
+            
            document.getElementById("rocky-textbox").classList.add("hidden");
+           changerockystate('sitidle')
+
         },500);
     }
 }
@@ -231,9 +268,33 @@ function changerockystate(newstate) {
         setRockyimage("rockyangryanimation")
 
     }
+    else if (newstate == "fallingasleep") {
+    setRockyimage("RockyFallingAsleep.webp"); 
+  }
     else if (newstate == "sleeping"){
         setRockyimage("RockySleepinganimation.webp")
     }
+    else if (newstate == "wakingup") {
+    setRockyimage("Rockywakingup.webp"); 
+}
+}
+
+function  triggerRockywakeup(){
+    rockycurrentstate = 'wakingup'
+
+    setRockyimage(wakeupanimation.webp)
+    const wakeupsound = new Audio("OS_sounds/hello-grace-friend.mp3")
+    showRockyDialouge("*strecccch* (slurred) Heello Friend Grace !~")
+    wakeupsound.volume = 0.6
+    wakeupsound.play();
+
+    setTimeout(function(){
+        document.getElementById("rocky-textbox").classLiat.add("hidden");
+        changerockystate('sitidle');
+        resetfatiguetimer();
+
+    }, 2500);
+
 }
 
 function startgreetingsequence(){
@@ -254,7 +315,7 @@ function startgreetingsequence(){
 
     setTimeout(function(){
         showRockyDialouge("can play with Rocky and do many things on thinking machine")
-    },18000)
+    },16000)
 
     setTimeout(function(){
         showRockyDialouge("Time go searching!")
@@ -262,7 +323,9 @@ function startgreetingsequence(){
 
     setTimeout( function(){
         document.getElementById("rocky-textbox").classList.add("hidden");
+        changerockystate('sitidle');
         resetfatiguetimer();
+        
     },24000)
 }
 
