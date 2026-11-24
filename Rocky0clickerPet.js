@@ -91,7 +91,7 @@ setInterval(assessbackgroundfidget,15000)
 
 function resetfatiguetimer(){
     clearTimeout(fatiguetimer);
-    setTimeout(rockySleep,60 *1000);
+    fatiguetimer = setTimeout(rockySleep,60 *1000);
 
 
 
@@ -100,11 +100,12 @@ function resetfatiguetimer(){
 
 function rockysquish(){
 
-    const tap = new Audio('OS_sounds/rocky-say-yes.mp3');
+    const tap = new Audio('OS_sounds/sqek.mp3');
     tap.volume = 0.6;
-    tap.play
+    tap.play()
 
-   const rocky = documentgetElementById("rocky-pet");
+   const rocky = document.getElementById("rocky-pet");
+
    rocky.classList.add("squish");
 
     setTimeout(function(){
@@ -140,11 +141,13 @@ function clickRocky(){
     if (rockycurrentstate == "sitidle") {
         let roll = Math.random() 
 
-        if (roll < 0.5){
-            showRockyreactions()
+        if (roll < 0.6){
+            showRockyreactions();
+            resetfatiguetimer();
         }
         else {
-            rockysquish()
+            rockysquish();
+            resetfatiguetimer();
         }
     
      }
@@ -163,7 +166,8 @@ function checkspamclicks() {
          lastrockyclicktime = now;
 
     if (spamclicks >= 10){
-        triggerrockyangry()
+        triggerrockyangry();
+        resetfatiguetimer();
     }
 }
 
@@ -219,7 +223,6 @@ function showRockyreactions(){
     setRockyimage(chosen.gif)
     showRockyDialouge(chosen.text)
 
-    resetfatiguetimer()
  
 }
 
@@ -227,22 +230,62 @@ function showRockyreactions(){
 
 function triggerrockyangry(){
 //  soon more stuff here, like the angry screeching and extra dialouge
-showRockyDialouge("Stop Poking Rocky or will throw out of airlock")
+if(rockycurrentstate !=="sitidle") return;
+
 changerockystate('angry')
-resetfatiguetimer();
+setRockyimage('swatting.webp')
+showRockyDialouge(" WHY SO AGGRESSIVE QUESTION ?! ")
+const seethinggrowl = new Audio('OS_sounds/eram-laughter-deltarune.mp3')
+seethinggrowl.volume = 0.6;
+seethinggrowl.play()
+const badbad = new Audio('OS_sounds/rocky-bad-bad-bad.mp3');
+    badbad.volume = 0.6;
+    
+
+setTimeout(function(){
+    setRockyimage('raisinghandinanger.webp')
+    showRockyDialouge('Stop endless poking or will throw out of airlock!')
+    badbad.play()
+
+}, 4500)
+
+setTimeout(function(){
+    setRockyimage('raisinghandinanger.webp')
+    showRockyDialouge('why so clingy? human silly and stupid, statement.')
+   
+
+}, 8500)
+
+setTimeout(function(){
+    setRockyimage('foottaping.webp')
+    showRockyDialouge('..... just no more hard tap-taping on rocky, okay question? Rocky sorry for anger, much remorse.')
+    purr.play()
+
+}, 10500)
+
+setTimeout(function(){
+ document.getElementById("rocky-textbox").classList.add("hidden");
+           changerockystate('sitidle')
+           
+
+}, 17500)
+
+
+
+
 
 }
 
 function rockySleep(){
-
+    
     if (rockycurrentstate !=="sitidle") return;
 
     rockycurrentstate = "fallingasleep";
 
-    showRockyDialouge(" * yawn* ")
+    showRockyDialouge(" * yawn* ");
     const purr = new Audio('OS_sounds/rocky-purr.mp3');
     purr.volume = 0.6;
-    purr.play()
+    purr.play();
     
 
 
@@ -252,7 +295,7 @@ function rockySleep(){
     },3000);
 
     setTimeout(function(){
-        changerockystate('sleeping')
+        changerockystate('sleeping');
     },5500)
  
 
@@ -285,35 +328,35 @@ function changerockystate(newstate) {
         setRockyimage("RockyIdleanimation.webp")
     }
     else if (newstate == "angry"){
-        setRockyimage("rockyangryanimation")
+        setRockyimage("rockyangryanimation.webp")
 
     }
     else if (newstate == "fallingasleep") {
     setRockyimage("RockyIdleanimation.webp"); 
   }
     else if (newstate == "sleeping"){
-        setRockyimage("RockySleepinganimation.webp")
+        setRockyimage("rockysleepinganim.webp")
     }
     else if (newstate == "wakingup") {
-    setRockyimage("Rockywakingup.webp"); 
+    setRockyimage("RockyIdleanimation.webp"); 
 }
 }
 
 function  triggerRockywakeup(){
-    rockycurrentstate = 'wakingup'
+    changerockystate('wakingup')
 
-    setRockyimage(wakeupanimation.webp)
+    setRockyimage('wakeupanimation.webp')
     const wakeupsound = new Audio("OS_sounds/hello-grace-friend.mp3")
     showRockyDialouge("*strecccch* (slurred) Heello Friend Grace !~")
-    wakeupsound.volume = 0.6
+    wakeupsound.volume = 0.6;
     wakeupsound.play();
 
     setTimeout(function(){
-        document.getElementById("rocky-textbox").classLiat.add("hidden");
+        document.getElementById("rocky-textbox").classList.add("hidden");
         changerockystate('sitidle');
         resetfatiguetimer();
 
-    }, 2500);
+    }, 3500);
 
 }
 
