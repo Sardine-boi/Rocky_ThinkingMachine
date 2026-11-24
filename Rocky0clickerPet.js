@@ -98,6 +98,22 @@ function resetfatiguetimer(){
 }
 
 
+function rockysquish(){
+
+    const tap = new Audio('OS_sounds/rocky-say-yes.mp3');
+    tap.volume = 0.6;
+    tap.play
+
+   const rocky = documentgetElementById("rocky-pet");
+   rocky.classList.add("squish");
+
+    setTimeout(function(){
+        rocky.classList.remove('squish');
+    }, 350);
+
+}
+
+
 function clickRocky(){
 
   if (rockycurrentstate === "greeting") return;
@@ -108,9 +124,11 @@ function clickRocky(){
 
 
     if (rockycurrentstate === "sleeping"){
-        triggerRockywakeup();
-        return;
+    triggerRockywakeup();
+    return;
     } 
+
+    
 
      checkspamclicks()
 
@@ -118,13 +136,15 @@ function clickRocky(){
 
     resetfatiguetimer()
     clickCount++
-    // rocky squish
 
     if (rockycurrentstate == "sitidle") {
         let roll = Math.random() 
 
         if (roll < 0.5){
             showRockyreactions()
+        }
+        else {
+            rockysquish()
         }
     
      }
@@ -269,7 +289,7 @@ function changerockystate(newstate) {
 
     }
     else if (newstate == "fallingasleep") {
-    setRockyimage("RockyFallingAsleep.webp"); 
+    setRockyimage("RockyIdleanimation.webp"); 
   }
     else if (newstate == "sleeping"){
         setRockyimage("RockySleepinganimation.webp")
