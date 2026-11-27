@@ -141,7 +141,7 @@ function clickRocky(){
     if (rockycurrentstate == "sitidle") {
         let roll = Math.random() 
 
-        if (roll > 0.75){
+        if (roll > 0.84){
             showRockyreactions();
             resetfatiguetimer();
         }
@@ -167,7 +167,6 @@ function checkspamclicks() {
 
     if (spamclicks >= 10){
         triggerrockyangry();
-        resetfatiguetimer();
     }
 }
 
@@ -239,7 +238,7 @@ const seethinggrowl = new Audio('OS_sounds/eram-laughter-deltarune.mp3')
 seethinggrowl.volume = 0.6;
 seethinggrowl.play()
 const angerscreech= new Audio('OS_sounds/092-gastly.mp3');
-    angerscreech.volume = 0.6;
+angerscreech.volume = 0.2;
     
 
 setTimeout(function(){
@@ -252,20 +251,28 @@ setTimeout(function(){
 setTimeout(function(){
     setRockyimage('raisinghandinanger.webp')
     showRockyDialouge('why so clingy? human silly and stupid, statement.')
-   angerscreech.play()
+   angerscreech.play();
 
 }, 8500)
+
+setTimeout(function(){
+    setRockyimage('swatting.webp')
+    showRockyDialouge('>:(')
+    seethinggrowl.play()
+
+}, 10500)
 
 setTimeout(function(){
     setRockyimage('foottaping.webp')
     showRockyDialouge('..... just no more hard tap-taping on rocky, okay question? Rocky sorry for anger, much remorse.')
     purr.play()
 
-}, 10500)
+}, 14500)
 
 setTimeout(function(){
  document.getElementById("rocky-textbox").classList.add("hidden");
            changerockystate('sitidle')
+            resetfatiguetimer();
            
 
 }, 17500)
@@ -347,16 +354,23 @@ function  triggerRockywakeup(){
 
     setRockyimage('wakeupanimation.webp')
     const wakeupsound = new Audio("OS_sounds/hello-grace-friend.mp3")
-    showRockyDialouge("*strecccch* (slurred) Heello Friend Grace !~")
+    const notherwarble= new Audio("OS_sounds/hello-grace-friend.mp3")
+    notherwarble.volume = 0.5
+    showRockyDialouge("*strecccch*~")
     wakeupsound.volume = 0.6;
     wakeupsound.play();
+
+     setTimeout(function(){
+       showRockyDialouge(" Heelllo !~  Rocky wake now, need help, question?")
+
+    }, 3500);
 
     setTimeout(function(){
         document.getElementById("rocky-textbox").classList.add("hidden");
         changerockystate('sitidle');
         resetfatiguetimer();
 
-    }, 3500);
+    }, 7500);
 
 }
 
