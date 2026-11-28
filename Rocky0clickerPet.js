@@ -345,14 +345,14 @@ function changerockystate(newstate) {
         setRockyimage("rockysleepinganim.webp")
     }
     else if (newstate == "wakingup") {
-    setRockyimage('rockystrechanimation.webp'); 
+    setRockyimage('rockystrechanimation.apng'); 
 }
 }
 
 function  triggerRockywakeup(){
     changerockystate('wakingup')
 
-    setRockyimage('rockystrechanimation.webp')
+    setRockyimage('rockystrechanimation.apng')
     const wakeupsound = new Audio("OS_sounds/hello-grace-friend.mp3")
     const notherwarble= new Audio("OS_sounds/hello-grace-friend.mp3")
     notherwarble.volume = 0.5
@@ -361,6 +361,7 @@ function  triggerRockywakeup(){
     wakeupsound.play();
 
      setTimeout(function(){
+        setRockyimage("RockyIdleanimation.webp")
        showRockyDialouge(" Heelllo !~  Rocky wake now, need help, question?")
 
     }, 3500);
