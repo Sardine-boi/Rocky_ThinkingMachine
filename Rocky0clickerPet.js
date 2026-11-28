@@ -345,14 +345,14 @@ function changerockystate(newstate) {
         setRockyimage("rockysleepinganim.webp")
     }
     else if (newstate == "wakingup") {
-    setRockyimage("RockyIdleanimation.webp"); 
+    setRockyimage('rockystrechanimation.webp'); 
 }
 }
 
 function  triggerRockywakeup(){
     changerockystate('wakingup')
 
-    setRockyimage('wakeupanimation.webp')
+    setRockyimage('rockystrechanimation.webp')
     const wakeupsound = new Audio("OS_sounds/hello-grace-friend.mp3")
     const notherwarble= new Audio("OS_sounds/hello-grace-friend.mp3")
     notherwarble.volume = 0.5
