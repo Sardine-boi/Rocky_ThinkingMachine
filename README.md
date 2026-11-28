@@ -2,7 +2,7 @@ Rocky's Thinking machine (RTM)
 ------------------------------
 
 
-- This will be my readme for this silly project, if you are follwoign along with my changes i would please request that:
+- This will be my readme for this silly project, if you are following along with my changes i would please request that:
   !! YOU SHOULD NOT TAKE MY ASSESTS AND CODE WITHOUT MY PERMISSION !!
 
 i work really really hard for this and it takes me along while to hand-draw and animate everything,
